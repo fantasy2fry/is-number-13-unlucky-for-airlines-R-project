@@ -43,3 +43,10 @@ odwolania <- function(czyZ13, column){
 }
 
 wynik_odwolania_z_13_w_TailNum = odwolania(TRUE, "TailNum")
+
+wynik_odwolania_z_13_w_FlightNum = odwolania(TRUE, "FlightNum")
+library(ggplot2) # moze
+
+dodatkowa_kolumna = as.data.frame(wynik_odwolania_z_13[,1]/wynik_odwolania_z_13[,2])*100
+colnames(dodatkowa_kolumna) = "[,1]/[,2] %"
+wynik_prim=cbind(wynik_odwolania_z_13, dodatkowa_kolumna)
