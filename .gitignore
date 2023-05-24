@@ -1,4 +1,10 @@
 *.pdf
-*.csv
+*.csv.bz
 *.bz2
 *.zip
+a*.csv
+v*.csv
+d*.csv
+c*.csv
+p*.csv
+
