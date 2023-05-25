@@ -62,6 +62,7 @@ write.csv(wynik_odwolania_z_13_w_Day,
 
 write.csv(wynik_odwolania_z_13_w_TailNum, 
           file="~/Dokumenty/informatyczne/iadstudia/pdu/pd4/tabelki/odwolania_z_13_TailNum.csv")
+
 write.csv(wynik_odwolania_z_13_w_FlightNum, 
           file="~/Dokumenty/informatyczne/iadstudia/pdu/pd4/tabelki/odwolania_z_13_FlightNum.csv")
 write.csv(wynik_odwolania_bez_13_w_Day, 
@@ -87,3 +88,55 @@ write.csv(wynik_odwolania_bez_13_w_FlightNum,
 # 1. wygenerowac troche tabel i zapisac do pliku
 # 2. przygotowac pliki z tabelka dla Pani Dominiki
 # 3. przygotuwac pliczek R zeby tylko wrzucila swoje sciezki
+
+
+opoznienia_wylotow <- function(czyZ13, column){
+  wynik=as.data.frame(NULL)
+  for (iterator in 3:8) {
+  sciezka=paste("~/Dokumenty/informatyczne/iadstudia/pdu/pd4/200", iterator, ".csv.bz2" , sep="")
+  tabela=read.csv(sciezka)
+  if(czyZ13==TRUE){
+    result <- tabela[grepl("13", tabela[[column]]), ]
+  }else{
+    result <- tabela[!grepl("13", tabela[[column]]), ]
+  }
+    opoznienia=as.data.frame(sum(result$DepDelay, na.rm=TRUE))
+    colnames(opoznienia) <- paste("suma opoznien")
+    ilosc_lotow = as.data.frame(nrow(result))
+    colnames(ilosc_lotow) = "ilosc lotow"
+    test2=cbind(opoznienia, ilosc_lotow)
+    rownames(test2) = paste("200", iterator, sep="")
+    if(nrow(wynik)==0){
+      wynik=test2
+    }else{
+      wynik=rbind(wynik,test2)
+  }
+  rm(tabela)
+  }
+  dodatkowa_kolumna = as.data.frame(wynik[,1]/wynik[,2])
+  colnames(dodatkowa_kolumna) = "średnio opóźnień (w minutach) na dzień "
+  wynik=cbind(wynik, dodatkowa_kolumna)
+  return(wynik)
+}
+wynik_opoznienia_z_13_w_TailNum = opoznienia_wylotow(TRUE, "TailNum")
+wynik_opoznienia_bez_13_w_TailNum = opoznienia_wylotow(FALSE, "TailNum")
+
+wynik_opoznienia_z_13_w_FlightNum = opoznienia_wylotow(TRUE, "FlightNum")
+wynik_opoznienia_bez_13_w_FlightNum = opoznienia_wylotow(FALSE, "FlightNum")
+
+wynik_opoznienia_z_13_w_Day = opoznienia_wylotow(TRUE, "DayofMonth")
+wynik_opoznienia_bez_13_w_Day = opoznienia_wylotow(FALSE, "DayofMonth")
+
+
+write.csv(wynik_opoznienia_z_13_w_Day, 
+          file="~/Dokumenty/informatyczne/iadstudia/pdu/pd4/tabelki/opoznienia_z_13_Day.csv")
+write.csv(wynik_opoznienia_bez_13_w_Day, 
+          file="~/Dokumenty/informatyczne/iadstudia/pdu/pd4/tabelki/opoznienia_bez_13_Day.csv")
+write.csv(wynik_opoznienia_z_13_w_TailNum, 
+          file="~/Dokumenty/informatyczne/iadstudia/pdu/pd4/tabelki/opoznienia_z_13_TailNum.csv")
+write.csv(wynik_opoznienia_bez_13_w_TailNum, 
+          file="~/Dokumenty/informatyczne/iadstudia/pdu/pd4/tabelki/opoznienia_bez_13_TailNum.csv")
+write.csv(wynik_opoznienia_z_13_w_FlightNum, 
+          file="~/Dokumenty/informatyczne/iadstudia/pdu/pd4/tabelki/opoznienia_z_13_FlightNum.csv")
+write.csv(wynik_opoznienia_bez_13_w_FlightNum, 
+          file="~/Dokumenty/informatyczne/iadstudia/pdu/pd4/tabelki/opoznienia_bez_13_FlightNum.csv")
