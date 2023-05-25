@@ -2,10 +2,11 @@ library(shiny)
 library(ggplot2)
 library(tidyr)
 options(browser = "chromium")    # u mnie bez tej opcji shiny nie działa
+
 #sidebarLayout
 ui <- fluidPage(
   titlePanel("Czy liczba 13 jest nieszczęśliwa?"),
-  fluidPage(
+  sidebarLayout(
     sidebarPanel(
       selectInput("option1",
                   "Który atrybut nas interesuje?:",
