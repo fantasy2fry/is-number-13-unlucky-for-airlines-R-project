@@ -14,7 +14,6 @@ options(browser = "chromium") # inaczej mi shiny nie działało
 #   filter(grepl("13", FlightNum)) %>%
 #   select_if(~!any(is.na(.)))
 
-# 'result' will contain the filtered data frame with columns having no NA values
 
 odwolania <- function(czyZ13, column){
   wynik=as.data.frame(NULL)
@@ -114,7 +113,7 @@ opoznienia_wylotow <- function(czyZ13, column){
   rm(tabela)
   }
   dodatkowa_kolumna = as.data.frame(wynik[,1]/wynik[,2])
-  colnames(dodatkowa_kolumna) = "średnio opóźnień (w minutach) na dzień "
+  colnames(dodatkowa_kolumna) = "średnio opóźnień (w minutach) na lot "
   wynik=cbind(wynik, dodatkowa_kolumna)
   return(wynik)
 }
