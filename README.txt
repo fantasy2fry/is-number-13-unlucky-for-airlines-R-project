@@ -11,3 +11,7 @@ Są tam moje ścieżki do plików i w razie chęci stestowania wypadałoby je zm
 W folderze tabelki są wszystkie pliki .csv które są używane przez aplikację shiny.
 
 Wszystko było testowane na systemie GNU/Linux konkretnie dystrybucji CachyOS z rodziny Arch Linux
+
+W tworzeniu wykorzystaliśmy gita oraz bitbucket.org
+
+Plik prezentacja.pdf zawiera slajdy z aplikacji shiny

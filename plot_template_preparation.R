@@ -36,3 +36,5 @@ ggplot(data = wykres_odwolania_13_day,aes(x=rok,y=procent_z13, color=procent_bez
   coord_cartesian(ylim = c(0, 4)) +
   scale_y_continuous(breaks = seq(min(0), max(4), by = 1)) +
   theme(legend.position = "bottom")
+
+
