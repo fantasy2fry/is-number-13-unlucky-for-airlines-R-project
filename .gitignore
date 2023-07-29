@@ -6,6 +6,4 @@ v*.csv
 d*.csv
 c*.csv
 p*.csv
-*.pdf
-*.txt
 plot*.R
